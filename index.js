@@ -21,8 +21,13 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
-const playerSelection = prompt("Rock, Paper, or Scissors: ");
-const computerSelection = computerPlay();
-console.log(playRound(playerSelection, computerSelection));
-
-function game() {}
+function game() {
+  let count = 0;
+  while (count < 5) {
+    const playerSelection = prompt("Rock, Paper, or Scissors: ");
+    const computerSelection = computerPlay();
+    console.log(playRound(playerSelection, computerSelection));
+    count++;
+  }
+}
+game();
