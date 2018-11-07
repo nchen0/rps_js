@@ -17,55 +17,49 @@ function playRound(playerSelection, computerSelection) {
   if (computerscore < 5 && playerscore < 5) {
     if (playerSelection === "Rock") {
       if (computerSelection === "rock") {
-        return "Tie!";
+        round.textContent = "Tie!";
       } else if (computerSelection === "paper") {
         computerscore = computerscore + 1;
         text_computerscore.textContent = computerscore.toString();
+        round.textContent = "Lost!";
       } else {
+        round.textContent = "Win!";
         playerscore = playerscore + 1;
         text_playerscore.textContent = playerscore.toString();
       }
     } else if (playerSelection === "Paper") {
       if (computerSelection === "rock") {
+        round.textContent = "Win!";
         playerscore = playerscore + 1;
         text_playerscore.textContent = playerscore.toString();
       } else if (computerSelection === "paper") {
-        return "Tie!";
+        round.textContent = "Tie!";
       } else {
+        round.textContent = "Lost!";
         computerscore = computerscore + 1;
         text_computerscore.textContent = computerscore.toString();
       }
     } else {
       if (computerSelection === "rock") {
+        round.textContent = "Lost!";
         computerscore = computerscore + 1;
         text_computerscore.textContent = computerscore.toString();
       } else if (computerSelection === "paper") {
+        round.textContent = "Win!";
         playerscore = playerscore + 1;
         text_playerscore.textContent = playerscore.toString();
       } else {
-        return "Tie!";
+        round.textContent = "Tie!";
       }
     }
   } else {
     return;
   }
+  setTimeout(() => {
+    round.textContent = "";
+  }, 1000);
   determineWinner();
 }
-
-function game() {
-  const playerSelection = prompt("Rock, Paper, or Scissors: ");
-  const computerSelection = computerPlay();
-  console.log(playRound(playerSelection, computerSelection));
-}
-
-let startbtn = document.querySelector(".start");
-startbtn.addEventListener("click", () => {
-  if (startbtn.textContent === "Start") {
-    startbtn.textContent = "Stop";
-  } else {
-    startbtn.textContent = "Start";
-  }
-});
 
 rps_buttons = document.querySelectorAll(".rps");
 rps_buttons.forEach(button => {
@@ -85,3 +79,7 @@ function determineWinner() {
     alert("You have lost!");
   }
 }
+
+let round = document.createElement("h4");
+let gamediv = document.querySelector(".game");
+gamediv.appendChild(round);
